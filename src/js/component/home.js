@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "./button.jsx";
 import { Modal } from "./modal.jsx";
 
 //include images into your bundle
