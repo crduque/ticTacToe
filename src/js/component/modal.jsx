@@ -5,7 +5,17 @@ import { useEffect } from "react";
 export const Modal = props => {
 	const [opened, setOpened] = useState(true);
 	const [player, setPlayer] = useState(0);
-	let posiblePositions = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+	const [posiblePositions, setPosiblePositions] = useState([
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		""
+	]);
 
 	return opened ? (
 		<div>
@@ -40,17 +50,17 @@ export const Modal = props => {
 				{posiblePositions.map((item, index) => (
 					<div
 						key={index}
-						className="border col-4"
+						className="cell border col-4"
 						onClick={() => {
 							{
-								if (player == 1) {
-									//dibujas X
-									setPlayer(2);
-									console.log(player);
-								} else if (player == 2) {
-									//dibujas O
-									setPlayer(1);
-									console.log(player);
+								if (item == "") {
+									if (player == 1) {
+										posiblePositions.splice(index, 1, "X");
+										setPlayer(2);
+									} else {
+										posiblePositions.splice(index, 1, "O");
+										setPlayer(1);
+									}
 								}
 							}
 						}}>
