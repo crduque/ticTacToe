@@ -5,6 +5,7 @@ import { useEffect } from "react";
 export const Modal = props => {
 	const [opened, setOpened] = useState(true);
 	const [player, setPlayer] = useState(0);
+	const [turn, setTurn] = useState("Make your first move");
 	const [posiblePositions, setPosiblePositions] = useState([
 		"",
 		"",
@@ -39,6 +40,7 @@ export const Modal = props => {
 		</div>
 	) : (
 		<div>
+			<h3>{turn}</h3>
 			<button
 				type="button"
 				onClick={() => {
@@ -57,9 +59,11 @@ export const Modal = props => {
 									if (player == 1) {
 										posiblePositions.splice(index, 1, "X");
 										setPlayer(2);
+										setTurn("Turn Player O");
 									} else {
 										posiblePositions.splice(index, 1, "O");
 										setPlayer(1);
+										setTurn("Turn Player X");
 									}
 								}
 							}
