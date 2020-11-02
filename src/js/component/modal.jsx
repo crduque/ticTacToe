@@ -37,47 +37,42 @@ export const Modal = props => {
 	// 				array[winPositions][index][1].includes("X") &&
 	// 				array[winPositions][index][2].includes("X")
 	// 			) {
-	// 				console.log("True");
+	// 				console.log("WIN");
 	// 			}
 	// 		}
 	// 	}
 	// };
 
 	return opened ? (
-		<div>
-			<h2>Choose your weapon</h2>
-			<button
-				type="button"
-				onClick={() => {
-					setOpened(false);
-					setPlayer(1);
-				}}>
-				X
-			</button>
-			<button
-				type="button"
-				onClick={() => {
-					setOpened(false);
-					setPlayer(2);
-				}}>
-				O
-			</button>
+		<div className="choosingDiv">
+			<h2>Choose who plays first</h2>
+			<div>
+				<button
+					type="button"
+					onClick={() => {
+						setOpened(false);
+						setPlayer(1);
+					}}>
+					X
+				</button>
+				<button
+					type="button"
+					onClick={() => {
+						setOpened(false);
+						setPlayer(2);
+					}}>
+					O
+				</button>
+			</div>
 		</div>
 	) : (
-		<div>
+		<div className="playingDiv">
 			<h3>{turn}</h3>
-			<button
-				type="button"
-				onClick={() => {
-					window.location.reload(false);
-				}}>
-				Restart
-			</button>
 			<div className="row">
 				{posiblePositions.map((item, index) => (
 					<div
 						key={index}
-						className="cell border col-4"
+						className="cell col-4"
 						onClick={() => {
 							if (item == "") {
 								if (player == 1) {
@@ -95,6 +90,15 @@ export const Modal = props => {
 						{item}
 					</div>
 				))}
+			</div>
+			<div>
+				<button
+					type="button"
+					onClick={() => {
+						window.location.reload(false);
+					}}>
+					Restart
+				</button>
 			</div>
 		</div>
 	);

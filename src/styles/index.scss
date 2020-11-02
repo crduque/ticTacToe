@@ -1,9 +1,76 @@
 @import "~bootstrap/scss/bootstrap.scss";
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&display=swap');
 
-.cell {
-    width: 8rem;
-    height: 8rem;
+body {
+    background: #495867;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Comfortaa', cursive;
+}
+h1 {
+    margin-top: 1rem;
+    color: #577399;
+    font-size: 4rem;
+    font-weight: 700;
+}
+h2 {
+    font-size: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+h3 {
+    color: rgba(254, 96, 85, 0.938);
+    font-size: 2.5rem;
+    margin: 1rem;
+}
+.choosingDiv {
+    display: flex;
+    flex-flow: column nowrap;
+    button {
+        margin: 0.5rem 3.5rem;
+        padding: 1rem;
+        width: 6.5rem;
+        height: 6.5rem;
+        border-radius: 0.5rem;
+        background: #BDD5EA;
+        font-weight: 700;
+        font-size: 3rem;
+        color: #495867;
+    }
+}
+.playingDiv {
+    display: flex;
+    flex-flow: column nowrap;
+    text-align: center;
+    button {
+        background: #647fa3;
+        width: 10rem;
+        padding: 1rem;
+        margin: 1rem;
+        border-radius: 0.5rem;
+        font-weight: bold;
+        font-size: 1.8rem;
+        color: #BDD5EA;
+    }
 }
 .row {
     width: 24rem;
+    margin: 1rem;
+    align-self: center;
 }
+.cell {
+    width: 8rem;
+    height: 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    color: #577399;
+    border: 1.5px solid #647fa3;
+    border-radius: 0.8rem;
+    background: #BDD5EA;
+}
+
