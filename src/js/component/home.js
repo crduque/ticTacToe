@@ -8,7 +8,7 @@ import rigoImage from "../../img/rigo-baby.jpg";
 export function Home() {
 	return (
 		<div>
-			<h1>TicTacToe in React.js</h1>
+			<h1>Tic Tac Toe</h1>
 			<Game />
 		</div>
 	);
