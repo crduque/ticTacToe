@@ -35,13 +35,16 @@ button:focus{
     button {
         margin: 0.5rem 3.5rem;
         padding: 1rem;
-        width: 6.5rem;
-        height: 6.5rem;
+        width: 8rem;
+        height: 8rem;
         border-radius: 0.5rem;
         background: #BDD5EA;
         font-weight: 700;
-        font-size: 3rem;
+        font-size: 4.5rem;
         color: #495867;
+    }
+    button:hover{
+        color: rgba(254, 96, 85, 0.938);
     }
 }
 .playingDiv {
