@@ -5,20 +5,22 @@ import { Alert } from "bootstrap";
 import { Modal, Button } from "react-bootstrap";
 
 export const Game = props => {
-	const [opened, setOpened] = useState(true);
+	const [welcomeScreen, setWelcomeScreen] = useState(true);
 	const [player, setPlayer] = useState(0);
 	const [turn, setTurn] = useState("Make your first move");
+	const [show, setShow] = useState(false);
+	const handleShow = () => setShow(true);
 	const [winnerPlayer, setWinnerPlayer] = useState(null);
 	const [posiblePositions, setPosiblePositions] = useState([
-		"", //0
-		"", //1
-		"", //2
-		"", //3
-		"", //4
-		"", //5
-		"", //6
-		"", //7
-		"" //8
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		""
 	]);
 	const winPositions = [
 		[0, 1, 2],
@@ -31,33 +33,6 @@ export const Game = props => {
 		[2, 4, 6]
 	];
 
-	const [show, setShow] = useState(false);
-	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
-
-	// const modal = winnerPlayer => {
-	// 	return (
-	// 		<>
-	// 			<Modal show={show} onHide={handleClose}>
-	// 				<Modal.Header closeButton>
-	// 					<Modal.Title>Modal heading</Modal.Title>
-	// 				</Modal.Header>
-	// 				<Modal.Body>{winnerPlayer} wins!</Modal.Body>
-	// 				<Modal.Footer>
-	// 					<Button variant="secondary" onClick={handleClose}>
-	// 						Close
-	// 					</Button>
-	// 					<Button
-	// 						variant="primary"
-	// 						// onClick={window.location.reload(false)}
-	// 					>
-	// 						Restart
-	// 					</Button>
-	// 				</Modal.Footer>
-	// 			</Modal>
-	// 		</>
-	// 	);
-	// };
 	const endGame = array => {
 		for (let index = 0; index < winPositions.length; index++) {
 			for (let indexWin = 0; indexWin < 3; indexWin++) {
@@ -66,7 +41,6 @@ export const Game = props => {
 					array[winPositions[index][1]].includes("X") &&
 					array[winPositions[index][2]].includes("X")
 				) {
-					console.log("X WIN");
 					handleShow();
 					setWinnerPlayer("X");
 				}
@@ -75,7 +49,6 @@ export const Game = props => {
 					array[winPositions[index][1]].includes("O") &&
 					array[winPositions[index][2]].includes("O")
 				) {
-					console.log("O WIN");
 					handleShow();
 					setWinnerPlayer("O");
 				}
@@ -83,7 +56,7 @@ export const Game = props => {
 		}
 	};
 
-	return opened ? (
+	return welcomeScreen ? (
 		<div className="choosingDiv">
 			<h2>Choose who plays first</h2>
 			<div>
@@ -91,7 +64,7 @@ export const Game = props => {
 					type="button"
 					onClick={() => {
 						setPlayer(1);
-						setOpened(false);
+						setWelcomeScreen(false);
 					}}>
 					X
 				</button>
@@ -99,7 +72,7 @@ export const Game = props => {
 					type="button"
 					onClick={() => {
 						setPlayer(2);
-						setOpened(false);
+						setWelcomeScreen(false);
 					}}>
 					O
 				</button>
