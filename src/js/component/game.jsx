@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { Alert } from "bootstrap";
+import { Modal, Button } from "react-bootstrap";
 
-export const Modal = props => {
+export const Game = props => {
 	const [opened, setOpened] = useState(true);
 	const [player, setPlayer] = useState(0);
 	const [turn, setTurn] = useState("Make your first move");
-	const [win, setWin] = useState(false);
+	const [winnerPlayer, setWinnerPlayer] = useState(null);
 	const [posiblePositions, setPosiblePositions] = useState([
 		"", //0
 		"", //1
@@ -30,38 +31,33 @@ export const Modal = props => {
 		[2, 4, 6]
 	];
 
-	const modal = winnerPlayer => {
-		return (
-			<div className="modal" tabIndex="1" role="dialog">
-				<div className="modal-dialog" role="document">
-					<div className="modal-content">
-						<div className="modal-header">
-							<h5 className="modal-title">Modal title</h5>
-							<button
-								type="button"
-								className="close"
-								data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div className="modal-body">
-							<p>{winnerPlayer} WINS!</p>
-						</div>
-						<div className="modal-footer">
-							<button
-								type="button"
-								onClick={() => {
-									window.location.reload(false);
-								}}>
-								Restart
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		);
-	};
+	const [show, setShow] = useState(false);
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
+
+	// const modal = winnerPlayer => {
+	// 	return (
+	// 		<>
+	// 			<Modal show={show} onHide={handleClose}>
+	// 				<Modal.Header closeButton>
+	// 					<Modal.Title>Modal heading</Modal.Title>
+	// 				</Modal.Header>
+	// 				<Modal.Body>{winnerPlayer} wins!</Modal.Body>
+	// 				<Modal.Footer>
+	// 					<Button variant="secondary" onClick={handleClose}>
+	// 						Close
+	// 					</Button>
+	// 					<Button
+	// 						variant="primary"
+	// 						// onClick={window.location.reload(false)}
+	// 					>
+	// 						Restart
+	// 					</Button>
+	// 				</Modal.Footer>
+	// 			</Modal>
+	// 		</>
+	// 	);
+	// };
 	const endGame = array => {
 		for (let index = 0; index < winPositions.length; index++) {
 			for (let indexWin = 0; indexWin < 3; indexWin++) {
@@ -71,7 +67,8 @@ export const Modal = props => {
 					array[winPositions[index][2]].includes("X")
 				) {
 					console.log("X WIN");
-					modal("X");
+					handleShow();
+					setWinnerPlayer("X");
 				}
 				if (
 					array[winPositions[index][0]].includes("O") &&
@@ -79,7 +76,8 @@ export const Modal = props => {
 					array[winPositions[index][2]].includes("O")
 				) {
 					console.log("O WIN");
-					modal("O");
+					handleShow();
+					setWinnerPlayer("O");
 				}
 			}
 		}
@@ -92,16 +90,16 @@ export const Modal = props => {
 				<button
 					type="button"
 					onClick={() => {
-						setOpened(false);
 						setPlayer(1);
+						setOpened(false);
 					}}>
 					X
 				</button>
 				<button
 					type="button"
 					onClick={() => {
-						setOpened(false);
 						setPlayer(2);
+						setOpened(false);
 					}}>
 					O
 				</button>
@@ -109,6 +107,20 @@ export const Modal = props => {
 		</div>
 	) : (
 		<div className="playingDiv">
+			<>
+				<Modal show={show}>
+					<Modal.Body>{winnerPlayer} wins!</Modal.Body>
+					<Modal.Footer>
+						<button
+							type="button"
+							onClick={() => {
+								window.location.reload(false);
+							}}>
+							Restart
+						</button>
+					</Modal.Footer>
+				</Modal>
+			</>
 			<h3>{turn}</h3>
 			<div className="row">
 				{posiblePositions.map((item, index) => (
@@ -140,7 +152,7 @@ export const Modal = props => {
 					onClick={() => {
 						window.location.reload(false);
 					}}>
-					Restart
+					Reset
 				</button>
 			</div>
 		</div>
