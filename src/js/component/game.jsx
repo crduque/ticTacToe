@@ -56,6 +56,13 @@ export const Game = props => {
 		}
 	};
 
+	const noWinners = () => {
+		if (!posiblePositions.includes("")) {
+			handleShow();
+			setWinnerPlayer("Nobody");
+		}
+	};
+
 	return welcomeScreen ? (
 		<div className="choosingDiv">
 			<h2>Choose who plays first</h2>
@@ -107,11 +114,13 @@ export const Game = props => {
 									setPlayer(2);
 									setTurn("Turn Player O");
 									endGame(posiblePositions);
+									noWinners();
 								} else {
 									posiblePositions.splice(index, 1, "O");
 									setPlayer(1);
 									setTurn("Turn Player X");
 									endGame(posiblePositions);
+									noWinners();
 								}
 							}
 						}}>
